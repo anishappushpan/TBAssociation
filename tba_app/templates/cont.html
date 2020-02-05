@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TBA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- styles -->
+        {%load static%}
+        <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+        <link href="{%static 'css/bootstrap.css' %}" rel="stylesheet" />
+        <link href="{%static 'css/bootstrap-responsive.css' %}" rel="stylesheet" />
+        <link href="{%static 'css/prettyPhoto.css' %}" rel="stylesheet" />
+        <link href="{%static 'css/animate.css' %}" rel="stylesheet" />
+        <link href="{%static 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Roboto+Condensed:400,300,700' %}" rel="stylesheet" />
+        <link href="{%static 'css/style.css' %}" rel="stylesheet" />
+        <link href="{%static 'color/default.css' %}" rel="stylesheet" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="ico/favicon.ico" />
+        <title> view registration</title>
+    </head>
+    <body>
+        <h1>Messages</h1>
+            <table class="table table-bordered">
+               <thead>
+                   <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Email-ID</td>
+                        <td>Subject</td>
+                        <td>Message</td>
+                   </tr>
+               </thead>
+               <tbody>
+                
+                {%if authors%}
+                {%for i in authors%}
+                <form action="{% url 'status' %}" method='POST'> 
+                        {% csrf_token %}  
+                <tr>
+                    <td><input type="text" value="{{i.id}}" name="id" style="width:30px;" readonly ></td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.subject}}</td>
+                    <td>{{i.message}}</td>
+                    <td><input type="submit" name="submit" value="Mark as read"></td>
+                </tr>
+                </form>
+                {%endfor %}
+                {%endif %}
+                </tbody>
+            </table>
+    </body> 
+    </html>   
